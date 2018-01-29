@@ -44,11 +44,11 @@ void loop(){
     analogWrite(LED_G, gamma8[x_val/4]);  
     analogWrite(LED_B, gamma8[y_val/4]);  
     
-    Serial.print(pot_val);
+    Serial.print(pot_val/4);
     Serial.print(",");
-    Serial.print(x_val);
+    Serial.print(x_val/4);
     Serial.print(",");
-    Serial.println(y_val);
+    Serial.println(y_val/4);
     
     delay(2);
   }
