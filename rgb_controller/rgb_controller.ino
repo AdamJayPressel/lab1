@@ -4,7 +4,6 @@
 #define POT A0
 #define Y A1
 #define X A2
-#define button 8
 
 const uint8_t gamma8[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -26,23 +25,17 @@ const uint8_t gamma8[] = {
 
 void setup(){
   Serial.begin(9600);
-  pinMode(button, INPUT);
 }
 
 void loop(){
-  bool button_state = 1;
-  if(digitalRead(button))
-    button_state ^= button_state;
-  
-  if(button_state){
-    int pot_val = analogRead(POT);
-    int x_val = analogRead(X);
-    int y_val = analogRead(Y);
+  int pot_val = analogRead(POT);
+  int x_val = analogRead(X);
+  int y_val = analogRead(Y);
     
   
-    analogWrite(LED_R, gamma8[pot_val/4]);  
-    analogWrite(LED_G, gamma8[x_val/4]);  
-    analogWrite(LED_B, gamma8[y_val/4]);  
+  analogWrite(LED_R, gamma8[pot_val/4]);  
+  analogWrite(LED_G, gamma8[x_val/4]);  
+  analogWrite(LED_B, gamma8[y_val/4]);    
     
     Serial.print(pot_val/4);
     Serial.print(",");
@@ -50,7 +43,5 @@ void loop(){
     Serial.print(",");
     Serial.println(y_val/4);
     
-    delay(2);
-  }
-  
+    delay(2);  
 }
